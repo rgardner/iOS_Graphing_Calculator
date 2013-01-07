@@ -16,8 +16,8 @@
 		6BE3635D169AA21400569BBA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE3635C169AA21400569BBA /* Default.png */; };
 		6BE3635F169AA21400569BBA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE3635E169AA21400569BBA /* Default@2x.png */; };
 		6BE36361169AA21400569BBA /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE36360169AA21400569BBA /* Default-568h@2x.png */; };
-		6BE36364169AA21400569BBA /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE36362169AA21400569BBA /* MainStoryboard_iPhone.storyboard */; };
-		6BE36367169AA21400569BBA /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE36365169AA21400569BBA /* MainStoryboard_iPad.storyboard */; };
+		6BE36364169AA21400569BBA /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE36362169AA21400569BBA /* iPhone.storyboard */; };
+		6BE36367169AA21400569BBA /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BE36365169AA21400569BBA /* iPad.storyboard */; };
 		6BE3636A169AA21400569BBA /* GraphingCalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE36369169AA21400569BBA /* GraphingCalculatorViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -35,8 +35,8 @@
 		6BE3635C169AA21400569BBA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6BE3635E169AA21400569BBA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6BE36360169AA21400569BBA /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		6BE36363169AA21400569BBA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		6BE36366169AA21400569BBA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		6BE36363169AA21400569BBA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPhone.storyboard; sourceTree = "<group>"; };
+		6BE36366169AA21400569BBA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/iPad.storyboard; sourceTree = "<group>"; };
 		6BE36368169AA21400569BBA /* GraphingCalculatorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GraphingCalculatorViewController.h; sourceTree = "<group>"; };
 		6BE36369169AA21400569BBA /* GraphingCalculatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphingCalculatorViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,8 +87,8 @@
 			children = (
 				6BE36359169AA21400569BBA /* GraphingCalculatorAppDelegate.h */,
 				6BE3635A169AA21400569BBA /* GraphingCalculatorAppDelegate.m */,
-				6BE36362169AA21400569BBA /* MainStoryboard_iPhone.storyboard */,
-				6BE36365169AA21400569BBA /* MainStoryboard_iPad.storyboard */,
+				6BE36362169AA21400569BBA /* iPhone.storyboard */,
+				6BE36365169AA21400569BBA /* iPad.storyboard */,
 				6BE36368169AA21400569BBA /* GraphingCalculatorViewController.h */,
 				6BE36369169AA21400569BBA /* GraphingCalculatorViewController.m */,
 				6BE36351169AA21400569BBA /* Supporting Files */,
@@ -166,8 +166,8 @@
 				6BE3635D169AA21400569BBA /* Default.png in Resources */,
 				6BE3635F169AA21400569BBA /* Default@2x.png in Resources */,
 				6BE36361169AA21400569BBA /* Default-568h@2x.png in Resources */,
-				6BE36364169AA21400569BBA /* MainStoryboard_iPhone.storyboard in Resources */,
-				6BE36367169AA21400569BBA /* MainStoryboard_iPad.storyboard in Resources */,
+				6BE36364169AA21400569BBA /* iPhone.storyboard in Resources */,
+				6BE36367169AA21400569BBA /* iPad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,20 +195,20 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		6BE36362169AA21400569BBA /* MainStoryboard_iPhone.storyboard */ = {
+		6BE36362169AA21400569BBA /* iPhone.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6BE36363169AA21400569BBA /* en */,
 			);
-			name = MainStoryboard_iPhone.storyboard;
+			name = iPhone.storyboard;
 			sourceTree = "<group>";
 		};
-		6BE36365169AA21400569BBA /* MainStoryboard_iPad.storyboard */ = {
+		6BE36365169AA21400569BBA /* iPad.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				6BE36366169AA21400569BBA /* en */,
 			);
-			name = MainStoryboard_iPad.storyboard;
+			name = iPad.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
