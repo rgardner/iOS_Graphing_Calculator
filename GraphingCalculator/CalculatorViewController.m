@@ -8,7 +8,6 @@
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
-#import "float.h"
 
 @interface CalculatorViewController ()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
@@ -19,7 +18,6 @@
 
 @synthesize display = _display;
 @synthesize history = _history;
-@synthesize variables = _variables;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
 

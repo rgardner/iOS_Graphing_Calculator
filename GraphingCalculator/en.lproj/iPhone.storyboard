@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
     <scenes>
-        <!--Calculator View Controller-->
+        <!--Calculator View Controller - Calculator-->
         <scene sceneID="NA7-EO-mS8">
             <objects>
                 <viewController id="Nku-Az-vEZ" customClass="CalculatorViewController" sceneMemberID="viewController">
@@ -423,11 +423,14 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="U7t-mr-6Rd" kind="push" id="s8v-Qx-GVa"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="WzJ-3m-tlB"/>
+                    <navigationItem key="navigationItem" title="Calculator" id="WzJ-3m-tlB"/>
                     <connections>
                         <outlet property="display" destination="T5j-0T-A7Z" id="4Gw-gj-HSm"/>
                         <outlet property="history" destination="2eP-Ob-GYP" id="czY-G3-Tex"/>
@@ -436,6 +439,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vj4-7t-cV7" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="926" y="154"/>
+        </scene>
+        <!--View Controller - Graph-->
+        <scene sceneID="TB2-PB-5Te">
+            <objects>
+                <viewController id="U7t-mr-6Rd" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lig-rU-kDi">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Graph" id="mXZ-e7-XDE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rev-w1-1ba" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1361" y="154"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bf8-VM-8XX">
