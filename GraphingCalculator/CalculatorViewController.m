@@ -13,7 +13,6 @@
 @interface CalculatorViewController ()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
-@property (nonatomic, strong) NSMutableDictionary *testVariableValues;
 @end
 
 @implementation CalculatorViewController
@@ -23,16 +22,10 @@
 @synthesize variables = _variables;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
-@synthesize testVariableValues = _testVariableValues;
 
 - (CalculatorBrain*)brain {
     if (!_brain) _brain = [[CalculatorBrain alloc] init];
     return _brain;
-}
-
-- (NSMutableDictionary*)testVariableValues {
-    if (!_testVariableValues) _testVariableValues = [[NSMutableDictionary alloc] init];
-    return _testVariableValues;
 }
 
 - (IBAction)digitPressed:(UIButton *)sender {
@@ -95,6 +88,7 @@
     }
     if (!self.userIsInTheMiddleOfEnteringANumber) [self enterPressed];
 }
+
 - (IBAction)undoPressed {
     if (self.userIsInTheMiddleOfEnteringANumber) {
         if (self.display.text.length > 1) {
@@ -108,41 +102,9 @@
     [self updateUserInterface];
 }
 
-- (IBAction)assignVariables:(UIButton *)sender {
-    if ([sender.currentTitle isEqualToString:@"Test 3"]) {
-        self.testVariableValues = nil;
-    } else {
-        NSArray *keys = @[@"x", @"a",@"b"];
-        NSArray *values;
-        if ([sender.currentTitle isEqualToString:@"Test 1"]) {
-            values = @[[NSNumber numberWithDouble:DBL_MAX], [NSNumber numberWithDouble:0], [NSNumber numberWithDouble:DBL_MIN]];
-        } else if ([sender.currentTitle isEqualToString:@"Test 2"]) {
-            values = @[[NSNumber numberWithDouble:5],[NSNumber numberWithDouble:4.8], [NSNumber numberWithDouble:0]];
-        }
-        self.testVariableValues = [NSMutableDictionary dictionaryWithObjects:values forKeys:keys];
-    }
-    [self updateVariablesDisplay];
-    [self updateUserInterface];
-}
-
-- (void)updateVariablesDisplay {
-    NSString *description = @"";
-    if (self.testVariableValues.count == 0) {
-        self.variables.text = @"testVariablesValues = nil";
-        return;
-    }
-    NSEnumerator *enumerator = [self.testVariableValues keyEnumerator];
-    NSString *key;
-    double value;
-    while ((key = [enumerator nextObject])) {
-        value = [[self.testVariableValues objectForKey:key] doubleValue];
-        description = [description stringByAppendingFormat:@"\t\t\t\t%@ = %g", key, value];
-    }
-    self.variables.text = description;
-}
 
 - (void)updateUserInterface {
-    id result = [CalculatorBrain runProgram:[self.brain program] usingVariables:self.testVariableValues];
+    id result = [CalculatorBrain runProgram:[self.brain program]];
     if ([result isKindOfClass:[NSNumber class]]) {
         self.display.text = [NSString stringWithFormat:@"%g", [result doubleValue]];
     } else {
