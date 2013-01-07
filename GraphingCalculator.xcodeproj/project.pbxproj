@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B755680169AA9BE000DF59A /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B75567F169AA9BE000DF59A /* AxesDrawer.m */; };
 		6BE3634B169AA21400569BBA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE3634A169AA21400569BBA /* UIKit.framework */; };
 		6BE3634D169AA21400569BBA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE3634C169AA21400569BBA /* Foundation.framework */; };
 		6BE3634F169AA21400569BBA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE3634E169AA21400569BBA /* CoreGraphics.framework */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B75567E169AA9BE000DF59A /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
+		6B75567F169AA9BE000DF59A /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
 		6BE36346169AA21400569BBA /* GraphingCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GraphingCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BE3634A169AA21400569BBA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6BE3634C169AA21400569BBA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -91,6 +94,8 @@
 		6BE36350169AA21400569BBA /* GraphingCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				6B75567E169AA9BE000DF59A /* AxesDrawer.h */,
+				6B75567F169AA9BE000DF59A /* AxesDrawer.m */,
 				6BE36374169AA2EE00569BBA /* CalculatorBrain.h */,
 				6BE36375169AA2EE00569BBA /* CalculatorBrain.m */,
 				6BE36376169AA2EF00569BBA /* CalculatorViewController.h */,
@@ -193,6 +198,7 @@
 				6BE3636A169AA21400569BBA /* GraphingCalculatorViewController.m in Sources */,
 				6BE36378169AA2EF00569BBA /* CalculatorBrain.m in Sources */,
 				6BE36379169AA2EF00569BBA /* CalculatorViewController.m in Sources */,
+				6B755680169AA9BE000DF59A /* AxesDrawer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +325,7 @@
 				6BE3636F169AA21400569BBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
