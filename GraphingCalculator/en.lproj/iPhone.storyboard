@@ -440,16 +440,28 @@
             </objects>
             <point key="canvasLocation" x="926" y="154"/>
         </scene>
-        <!--View Controller - Graph-->
+        <!--Graph View Controller - Graph-->
         <scene sceneID="TB2-PB-5Te">
             <objects>
-                <viewController id="U7t-mr-6Rd" sceneMemberID="viewController">
+                <viewController id="U7t-mr-6Rd" customClass="GraphViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lig-rU-kDi">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zTf-Hd-FfN">
+                                <rect key="frame" x="20" y="8" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Graph" id="mXZ-e7-XDE"/>
+                    <connections>
+                        <outlet property="history" destination="zTf-Hd-FfN" id="L8V-0i-xCT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rev-w1-1ba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -481,6 +493,12 @@
                 <relationship kind="action" name="digitPressed:" candidateClass="UIButton"/>
                 <relationship kind="action" name="operationPressed:" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="display" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="history" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="GraphViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphViewController.h"/>
+            <relationships>
                 <relationship kind="outlet" name="history" candidateClass="UILabel"/>
             </relationships>
         </class>

@@ -1,5 +1,5 @@
 //
-//  GraphingCalculatorViewController.h
+//  GraphViewController.h
 //  GraphingCalculator
 //
 //  Created by Bob Gardner on 1/6/13.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GraphingCalculatorViewController : UIViewController
+@interface GraphViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UILabel *history;
 
 @end
