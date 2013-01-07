@@ -424,7 +424,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="U7t-mr-6Rd" kind="push" id="s8v-Qx-GVa"/>
+                                    <segue destination="U7t-mr-6Rd" kind="push" identifier="showGraph" id="s8v-Qx-GVa"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -465,7 +465,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Graph" id="mXZ-e7-XDE"/>
                     <connections>
-                        <outlet property="history" destination="zTf-Hd-FfN" id="L8V-0i-xCT"/>
+                        <outlet property="graphView" destination="zku-gZ-kJV" id="FfV-4N-Jxk"/>
+                        <outlet property="history" destination="zTf-Hd-FfN" id="48E-m4-kP4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rev-w1-1ba" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -507,6 +508,7 @@
         <class className="GraphViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="graphView" candidateClass="GraphView"/>
                 <relationship kind="outlet" name="history" candidateClass="UILabel"/>
             </relationships>
         </class>

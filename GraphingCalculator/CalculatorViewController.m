@@ -8,6 +8,7 @@
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
+#import "GraphViewController.h"
 
 @interface CalculatorViewController ()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
@@ -110,5 +111,11 @@
         [self.brain removeLastOperand];
     }
     self.history.text = [CalculatorBrain descriptionOfProgram:[self.brain program]];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showGraph"]) {
+        [segue.destinationViewController setProgram:[[self.brain program] copy]];
+    }
 }
 @end

@@ -7,11 +7,28 @@
 //
 
 #import "GraphViewController.h"
+#import "GraphView.h"
+#import "CalculatorBrain.h"
 
 @interface GraphViewController ()
+
+@property (weak, nonatomic) IBOutlet GraphView *graphView;
 
 @end
 
 @implementation GraphViewController
+
+@synthesize history = _history;
+@synthesize graphView = _graphView;
+@synthesize program = _program;
+
+-(void)setProgram:(id)program {
+    _program = program;
+    self.history.text = [CalculatorBrain descriptionOfProgram:program];
+    [self.graphView setNeedsDisplay];
+}
+
+
+
 
 @end

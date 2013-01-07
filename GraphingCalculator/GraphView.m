@@ -25,6 +25,8 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
+    // Draw axes
+    // Iterate over x values and plot point with given y val from runProgram:usingVariableValues:
 }
 */
 
