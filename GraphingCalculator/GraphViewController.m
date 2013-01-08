@@ -37,8 +37,11 @@
     self.graphView.dataSource = self;
 }
 
--(id)programForGraphView:(GraphView *)sender {
-    return [self.program copy];
+-(NSNumber *)getYValForX:(double)x forGraphView:(GraphView *)sender {
+    NSDictionary *variableValues = [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:x] forKey:@"X"];
+    id result = [CalculatorBrain runProgram:self.program usingVariables:variableValues];
+    if ([result isKindOfClass:[NSNumber class]]) return result;
+    return nil;
 }
 
 @end

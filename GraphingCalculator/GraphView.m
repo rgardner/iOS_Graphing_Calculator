@@ -16,14 +16,11 @@
 @synthesize scale = _scale;
 @synthesize origin = _origin;
 
-#define DEFAULT_SCALE 0.90
+#define DEFAULT_SCALE 15.0
 
 - (CGFloat)scale {
-    if (!_scale) {
-        return DEFAULT_SCALE;
-    } else {
-        return _scale;
-    }
+    if (_scale) return _scale;
+    return DEFAULT_SCALE;
 }
 
 - (void)setScale:(CGFloat)scale {
@@ -40,8 +37,7 @@
     [self setup];
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self setup];
@@ -49,13 +45,20 @@
     return self;
 }
 
-- (void)drawRect:(CGRect)rect
-{
+- (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGPoint midPoint;
+    midPoint.x = self.bounds.origin.x + self.bounds.size.width / 2;
+    midPoint.y = self.bounds.origin.y + self.bounds.size.height / 2;
+
+    [AxesDrawer drawAxesInRect:rect originAtPoint:midPoint scale:self.scale];
+
+    CGContextSetLineWidth(context, 5.0);
+    [[UIColor blueColor] setStroke];
     // calculate origin and scale
     // draw axes
     // draw graph
-    // [AxesDrawer drawAxesInRect:<#(CGRect)#> originAtPoint:<#(CGPoint)#> scale:<#(CGFloat)#>]
     // id program = [self.dataSource programForGraphView:self];
 }
 
