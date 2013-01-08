@@ -7,27 +7,55 @@
 //
 
 #import "GraphView.h"
+#import "AxesDrawer.h"
 
 @implementation GraphView
+
+@synthesize dataSource = _dataSource;
+@synthesize scale = _scale;
+@synthesize origin = _origin;
+
+#define DEFAULT_SCALE 0.90
+
+- (CGFloat)scale {
+    if (!_scale) {
+        return DEFAULT_SCALE;
+    } else {
+        return _scale;
+    }
+}
+
+- (void)setScale:(CGFloat)scale {
+    if (scale == _scale) return;
+    _scale = scale;
+    [self setNeedsDisplay];
+}
+
+- (void)setup {
+    self.contentMode = UIViewContentModeRedraw;
+}
+
+- (void)awakeFromNib {
+    [self setup];
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        [self setup];
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
-    // Draw axes
-    // Iterate over x values and plot point with given y val from runProgram:usingVariableValues:
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    // calculate origin and scale
+    // draw axes
+    // draw graph
+    // [AxesDrawer drawAxesInRect:<#(CGRect)#> originAtPoint:<#(CGPoint)#> scale:<#(CGFloat)#>]
+    // id program = [self.dataSource programForGraphView:self];
 }
-*/
 
 @end

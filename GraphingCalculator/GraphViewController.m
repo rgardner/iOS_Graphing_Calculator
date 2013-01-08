@@ -10,7 +10,7 @@
 #import "GraphView.h"
 #import "CalculatorBrain.h"
 
-@interface GraphViewController ()
+@interface GraphViewController () <GraphViewDataSource>
 
 @property (weak, nonatomic) IBOutlet GraphView *graphView;
 
@@ -26,6 +26,16 @@
     _program = program;
     self.history.text = [CalculatorBrain descriptionOfProgram:program];
     [self.graphView setNeedsDisplay];
+}
+
+- (void)setGraphView:(GraphView *)graphView {
+    _graphView = graphView;
+    // enable gestures
+    self.graphView.dataSource = self;
+}
+
+-(id)programForGraphView:(GraphView *)sender {
+    return [self.program copy];
 }
 
 
