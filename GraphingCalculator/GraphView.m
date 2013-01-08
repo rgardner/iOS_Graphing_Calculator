@@ -7,6 +7,7 @@
 //
 
 #import "GraphView.h"
+#import "CalculatorBrain.h"
 #import "AxesDrawer.h"
 
 @implementation GraphView

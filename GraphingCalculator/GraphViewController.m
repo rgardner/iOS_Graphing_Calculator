@@ -24,8 +24,11 @@
 
 -(void)setProgram:(id)program {
     _program = program;
-    self.history.text = [CalculatorBrain descriptionOfProgram:program];
     [self.graphView setNeedsDisplay];
+}
+
+-(void)viewDidLoad {
+    self.history.text = [CalculatorBrain descriptionOfProgram:self.program];
 }
 
 - (void)setGraphView:(GraphView *)graphView {
@@ -37,8 +40,5 @@
 -(id)programForGraphView:(GraphView *)sender {
     return [self.program copy];
 }
-
-
-
 
 @end

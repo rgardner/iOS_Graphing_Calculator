@@ -113,6 +113,11 @@
     self.history.text = [CalculatorBrain descriptionOfProgram:[self.brain program]];
 }
 
+- (IBAction)showGraph {
+    // [self enterPressed];
+    [self performSegueWithIdentifier:@"showGraph" sender:self];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"showGraph"]) {
         [segue.destinationViewController setProgram:[[self.brain program] copy]];

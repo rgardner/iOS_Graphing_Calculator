@@ -424,7 +424,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="U7t-mr-6Rd" kind="push" identifier="showGraph" id="s8v-Qx-GVa"/>
+                                    <action selector="showGraph" destination="Nku-Az-vEZ" eventType="touchUpInside" id="eht-M4-4Bm"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -434,6 +434,7 @@
                     <connections>
                         <outlet property="display" destination="T5j-0T-A7Z" id="4Gw-gj-HSm"/>
                         <outlet property="history" destination="2eP-Ob-GYP" id="czY-G3-Tex"/>
+                        <segue destination="U7t-mr-6Rd" kind="push" identifier="showGraph" id="Lyf-qb-Eha"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vj4-7t-cV7" sceneMemberID="firstResponder"/>
@@ -504,6 +505,9 @@
         </class>
         <class className="GraphView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dataSource"/>
+            </relationships>
         </class>
         <class className="GraphViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphViewController.h"/>
