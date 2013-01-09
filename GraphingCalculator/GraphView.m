@@ -29,6 +29,20 @@
     [self setNeedsDisplay];
 }
 
+- (CGPoint)origin {
+    if (CGPointEqualToPoint(_origin, CGPointZero)) {
+        _origin.x = self.bounds.origin.x + self.bounds.size.width / 2;
+        _origin.y = self.bounds.origin.y + self.bounds.size.height / 2;
+    }
+    return _origin;
+}
+
+- (void)setOrigin:(CGPoint)origin {
+    if (CGPointEqualToPoint(origin, _origin)) return;
+    _origin = origin;
+    [self setNeedsDisplay];
+}
+
 - (void)setup {
     self.contentMode = UIViewContentModeRedraw;
 }
@@ -47,12 +61,8 @@
 
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGPoint midPoint;
-    midPoint.x = self.bounds.origin.x + self.bounds.size.width / 2;
-    midPoint.y = self.bounds.origin.y + self.bounds.size.height / 2;
 
-    [AxesDrawer drawAxesInRect:rect originAtPoint:midPoint scale:self.scale];
+    [AxesDrawer drawAxesInRect:rect originAtPoint:self.origin scale:self.scale];
 
     CGContextSetLineWidth(context, 5.0);
     [[UIColor blueColor] setStroke];
