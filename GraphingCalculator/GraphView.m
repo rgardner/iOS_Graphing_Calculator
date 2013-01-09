@@ -30,7 +30,7 @@
 }
 
 - (CGPoint)origin {
-    if (CGPointEqualToPoint(_origin, CGPointZero)) {
+    if (CGPointEqualToPoint(_origin, CGPointZero)) { // CGPointZero is a valid point, consider creating custom struct
         _origin.x = self.bounds.origin.x + self.bounds.size.width / 2;
         _origin.y = self.bounds.origin.y + self.bounds.size.height / 2;
     }
@@ -63,11 +63,30 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     [AxesDrawer drawAxesInRect:rect originAtPoint:self.origin scale:self.scale];
+    
+    BOOL pathStarted = NO;
+    for (CGFloat xPixel = 0; xPixel <= self.bounds.size.width; xPixel++) {
+        double xValue = 0.0; // calculate using scale, origin, and xPixel
+        id yValue = [self.dataSource getYValForX:xValue forGraphView:self];
 
+        if (!yValue) {
+            CGContextClosePath(context);
+            pathStarted = NO;
+            continue;
+        }
+
+        CGFloat yPixel = xPixel; // calculate using scale, origin, and yValue
+        if (!pathStarted) {
+            CGContextBeginPath(context);
+            CGContextMoveToPoint(context, xPixel, yPixel);
+            pathStarted = YES;
+            continue;
+        }
+        CGContextAddLineToPoint(context, xPixel, yPixel);
+    }
+    CGContextStrokePath(context);
     CGContextSetLineWidth(context, 5.0);
     [[UIColor blueColor] setStroke];
-    // calculate origin and scale
-    // draw axes
     // draw graph
     // id program = [self.dataSource programForGraphView:self];
 }
