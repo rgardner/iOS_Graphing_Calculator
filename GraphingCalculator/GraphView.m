@@ -64,26 +64,27 @@
 
     [AxesDrawer drawAxesInRect:rect originAtPoint:self.origin scale:self.scale];
     
-    BOOL pathStarted = NO;
+    BOOL lastSkipped = YES;
+    CGContextBeginPath(context);
     for (CGFloat xPixel = 0; xPixel <= self.bounds.size.width; xPixel++) {
         double xValue = 0.0; // calculate using scale, origin, and xPixel
         id yValue = [self.dataSource getYValForX:xValue forGraphView:self];
-
+        
         if (!yValue) {
-            CGContextClosePath(context);
-            pathStarted = NO;
+            lastSkipped = YES;
             continue;
         }
-
+        
         CGFloat yPixel = xPixel; // calculate using scale, origin, and yValue
-        if (!pathStarted) {
-            CGContextBeginPath(context);
+        
+        if (lastSkipped) {
             CGContextMoveToPoint(context, xPixel, yPixel);
-            pathStarted = YES;
-            continue;
+            lastSkipped = NO;
+        } else {
+            CGContextAddLineToPoint(context, xPixel, yPixel);
         }
-        CGContextAddLineToPoint(context, xPixel, yPixel);
     }
+
     CGContextStrokePath(context);
     CGContextSetLineWidth(context, 5.0);
     [[UIColor blueColor] setStroke];
