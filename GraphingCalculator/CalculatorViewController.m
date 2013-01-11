@@ -103,7 +103,7 @@
 
 
 - (void)updateUserInterface {
-    id result = [CalculatorBrain runProgram:[self.brain program]];
+    id result = [CalculatorBrain runProgram:[self.brain program] usingVariables:@{@"x" : [NSNumber numberWithDouble:1]}];
     if ([result isKindOfClass:[NSNumber class]]) {
         self.display.text = [NSString stringWithFormat:@"%g", [result doubleValue]];
     } else {

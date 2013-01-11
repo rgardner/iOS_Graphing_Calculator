@@ -64,10 +64,15 @@
 
     [AxesDrawer drawAxesInRect:rect originAtPoint:self.origin scale:self.scale];
     
+    NSLog(@"Width: %f\nHeight: %f", self.bounds.size.width, self.bounds.size.height);
+    
     BOOL lastSkipped = YES;
     CGContextBeginPath(context);
     for (CGFloat xPixel = 0; xPixel <= self.bounds.size.width; xPixel++) {
-        double xValue = 0.0; // calculate using scale, origin, and xPixel
+        double adjustedScale = self.scale * [self contentScaleFactor];
+        double xAxisLength = self.bounds.size.width / adjustedScale;
+        double minX = 0 - xAxisLength / 2;
+        double xValue = minX + (xPixel / self.bounds.size.width) * xAxisLength;
         id yValue = [self.dataSource getYValForX:xValue forGraphView:self];
         
         if (!yValue) {
@@ -75,7 +80,9 @@
             continue;
         }
         
-        CGFloat yPixel = xPixel; // calculate using scale, origin, and yValue
+        double yAxisLength = self.bounds.size.height / adjustedScale;
+        double minY = 0 - yAxisLength / 2;
+        CGFloat yPixel = ([yValue doubleValue] - minY) / yAxisLength * self.bounds.size.height;
         
         if (lastSkipped) {
             CGContextMoveToPoint(context, xPixel, yPixel);
@@ -85,11 +92,9 @@
         }
     }
 
+    [[UIColor blueColor] setStroke];
     CGContextStrokePath(context);
     CGContextSetLineWidth(context, 5.0);
-    [[UIColor blueColor] setStroke];
-    // draw graph
-    // id program = [self.dataSource programForGraphView:self];
 }
 
 @end

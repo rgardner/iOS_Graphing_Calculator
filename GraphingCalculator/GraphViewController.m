@@ -38,7 +38,7 @@
 }
 
 -(NSNumber *)getYValForX:(double)x forGraphView:(GraphView *)sender {
-    NSDictionary *variableValues = [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:x] forKey:@"X"];
+    NSDictionary *variableValues = [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:x] forKey:@"x"];
     id result = [CalculatorBrain runProgram:self.program usingVariables:variableValues];
     if ([result isKindOfClass:[NSNumber class]]) return result;
     return nil;
