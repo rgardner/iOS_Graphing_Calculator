@@ -52,9 +52,13 @@
 }
 
 - (void)pan:(UIPanGestureRecognizer *)gesture {
-    CGPoint translate = [gesture translationInView:self];
-    [self setOrigin:translate];
-    [gesture setTranslation:CGPointZero inView:self];
+    if ((gesture.state == UIGestureRecognizerStateChanged ||
+         gesture.state == UIGestureRecognizerStateEnded)) {
+        
+        CGPoint translation = [gesture translationInView:self];
+        self.origin = CGPointMake(self.origin.x + translation.x, self.origin.y + translation.y);
+        [gesture setTranslation:CGPointZero inView:self];
+    }
 }
 
 - (void)tripleTap:(UITapGestureRecognizer *)gesture {
@@ -99,7 +103,7 @@
         }
         
         double yAxisLength = self.bounds.size.height / adjustedScale;
-        double minY = 0 - (self.origin.y / self.bounds.size.height) * yAxisLength;
+        double minY = 0 - ((self.bounds.size.height - self.origin.y) / self.bounds.size.height) * yAxisLength;
         CGFloat yPixel = (1 - ([yValue doubleValue] - minY) / yAxisLength) * self.bounds.size.height;
         
         if (lastSkipped) {
