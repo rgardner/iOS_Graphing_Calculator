@@ -29,6 +29,14 @@
     [self setNeedsDisplay];
 }
 
+- (void)pinch:(UIPinchGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateChanged ||
+        gesture.state == UIGestureRecognizerStateEnded) {
+        self.scale *= gesture.scale;
+        gesture.scale = 1;
+    }
+}
+
 - (CGPoint)origin {
     if (CGPointEqualToPoint(_origin, CGPointZero)) { // CGPointZero is a valid point, consider creating custom struct
         _origin.x = self.bounds.origin.x + self.bounds.size.width / 2;
