@@ -33,8 +33,16 @@
 
 - (void)setGraphView:(GraphView *)graphView {
     _graphView = graphView;
+    // add pinch handler
     [self.graphView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pinch:)]];
-    // enable gestures
+    
+    // add pan handler
+    [self.graphView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pan:)]];
+    // add single finger triple tap handler
+    UITapGestureRecognizer *singleFingerTTap = [[UITapGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(tripleTap:)];
+    singleFingerTTap.numberOfTapsRequired = 3;
+    [self.graphView addGestureRecognizer:singleFingerTTap];
+
     self.graphView.dataSource = self;
 }
 

@@ -29,14 +29,6 @@
     [self setNeedsDisplay];
 }
 
-- (void)pinch:(UIPinchGestureRecognizer *)gesture {
-    if (gesture.state == UIGestureRecognizerStateChanged ||
-        gesture.state == UIGestureRecognizerStateEnded) {
-        self.scale *= gesture.scale;
-        gesture.scale = 1;
-    }
-}
-
 - (CGPoint)origin {
     if (CGPointEqualToPoint(_origin, CGPointZero)) { // CGPointZero is a valid point, consider creating custom struct
         _origin.x = self.bounds.origin.x + self.bounds.size.width / 2;
@@ -49,6 +41,26 @@
     if (CGPointEqualToPoint(origin, _origin)) return;
     _origin = origin;
     [self setNeedsDisplay];
+}
+
+- (void)pinch:(UIPinchGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateChanged ||
+        gesture.state == UIGestureRecognizerStateEnded) {
+        self.scale *= gesture.scale;
+        gesture.scale = 1;
+    }
+}
+
+- (void)pan:(UIPanGestureRecognizer *)gesture {
+    CGPoint translate = [gesture translationInView:self];
+    [self setOrigin:translate];
+    [gesture setTranslation:CGPointZero inView:self];
+}
+
+- (void)tripleTap:(UITapGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateEnded) {
+        [self setOrigin:[gesture locationInView:self]];
+    }
 }
 
 - (void)setup {
