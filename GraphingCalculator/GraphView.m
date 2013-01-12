@@ -61,17 +61,15 @@
 
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
-
-    [AxesDrawer drawAxesInRect:rect originAtPoint:self.origin scale:self.scale];
+    double adjustedScale = self.scale * [self contentScaleFactor];
     
-    NSLog(@"Width: %f\nHeight: %f", self.bounds.size.width, self.bounds.size.height);
+    [AxesDrawer drawAxesInRect:rect originAtPoint:self.origin scale:adjustedScale];
     
     BOOL lastSkipped = YES;
     CGContextBeginPath(context);
     for (CGFloat xPixel = 0; xPixel <= self.bounds.size.width; xPixel++) {
-        double adjustedScale = self.scale * [self contentScaleFactor];
         double xAxisLength = self.bounds.size.width / adjustedScale;
-        double minX = 0 - xAxisLength / 2;
+        double minX = 0 - (self.origin.x / self.bounds.size.width) * xAxisLength;
         double xValue = minX + (xPixel / self.bounds.size.width) * xAxisLength;
         id yValue = [self.dataSource getYValForX:xValue forGraphView:self];
         
@@ -81,8 +79,8 @@
         }
         
         double yAxisLength = self.bounds.size.height / adjustedScale;
-        double minY = 0 - yAxisLength / 2;
-        CGFloat yPixel = ([yValue doubleValue] - minY) / yAxisLength * self.bounds.size.height;
+        double minY = 0 - (self.origin.y / self.bounds.size.height) * yAxisLength;
+        CGFloat yPixel = (1 - ([yValue doubleValue] - minY) / yAxisLength) * self.bounds.size.height;
         
         if (lastSkipped) {
             CGContextMoveToPoint(context, xPixel, yPixel);

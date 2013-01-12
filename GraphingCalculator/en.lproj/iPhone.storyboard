@@ -457,8 +457,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="redraw" id="zku-gZ-kJV" customClass="GraphView">
-                                <rect key="frame" x="0.0" y="37" width="320" height="379"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="37" width="320" height="380"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
