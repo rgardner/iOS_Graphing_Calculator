@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B398B8216A21EFA00C1E37C /* RotatableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B398B8116A21EFA00C1E37C /* RotatableViewController.m */; };
 		6B755680169AA9BE000DF59A /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B75567F169AA9BE000DF59A /* AxesDrawer.m */; };
 		6B755683169AAC29000DF59A /* GraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B755682169AAC29000DF59A /* GraphViewController.m */; };
 		6B755688169AB065000DF59A /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B755687169AB065000DF59A /* GraphView.m */; };
@@ -26,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B398B8016A21EFA00C1E37C /* RotatableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatableViewController.h; sourceTree = "<group>"; };
+		6B398B8116A21EFA00C1E37C /* RotatableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatableViewController.m; sourceTree = "<group>"; };
 		6B75567E169AA9BE000DF59A /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
 		6B75567F169AA9BE000DF59A /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
 		6B755681169AAC29000DF59A /* GraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphViewController.h; sourceTree = "<group>"; };
@@ -111,6 +114,8 @@
 				6B755682169AAC29000DF59A /* GraphViewController.m */,
 				6B755686169AB065000DF59A /* GraphView.h */,
 				6B755687169AB065000DF59A /* GraphView.m */,
+				6B398B8016A21EFA00C1E37C /* RotatableViewController.h */,
+				6B398B8116A21EFA00C1E37C /* RotatableViewController.m */,
 				6BE36351169AA21400569BBA /* Supporting Files */,
 			);
 			path = GraphingCalculator;
@@ -205,6 +210,7 @@
 				6B755680169AA9BE000DF59A /* AxesDrawer.m in Sources */,
 				6B755683169AAC29000DF59A /* GraphViewController.m in Sources */,
 				6B755688169AB065000DF59A /* GraphView.m in Sources */,
+				6B398B8216A21EFA00C1E37C /* RotatableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
