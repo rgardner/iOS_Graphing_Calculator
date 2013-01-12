@@ -113,9 +113,21 @@
     self.history.text = [CalculatorBrain descriptionOfProgram:[self.brain program]];
 }
 
+- (GraphViewController *)splitViewGraphViewController {
+    id gvc = [self.splitViewController.viewControllers lastObject];
+    if (![gvc isKindOfClass:[GraphViewController class]]) {
+        gvc = nil;
+    }
+    return gvc;
+}
+
 - (IBAction)showGraph {
     // [self enterPressed];
-    [self performSegueWithIdentifier:@"showGraph" sender:self];
+    if ([self splitViewGraphViewController]) {
+        [[self splitViewGraphViewController] setProgram:[[self.brain program] copy]];
+    } else {
+        [self performSegueWithIdentifier:@"showGraph" sender:self];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
