@@ -39,6 +39,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     self.splitViewController.delegate = self;
+    self.splitViewController.presentsWithGesture = NO;
 }
 
 - (BOOL)splitViewController:(UISplitViewController *)svc
