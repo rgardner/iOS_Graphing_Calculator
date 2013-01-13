@@ -26,6 +26,7 @@
 - (void)setScale:(CGFloat)scale {
     if (scale == _scale) return;
     _scale = scale;
+    [self.dataSource storeScale:self.scale forGraphView:self];
     [self setNeedsDisplay];
 }
 
@@ -40,6 +41,7 @@
 - (void)setOrigin:(CGPoint)origin {
     if (CGPointEqualToPoint(origin, _origin)) return;
     _origin = origin;
+    [self.dataSource storeAxisOriginX:self.origin.x andAxisOriginY:self.origin.y forGraphView:self];
     [self setNeedsDisplay];
 }
 

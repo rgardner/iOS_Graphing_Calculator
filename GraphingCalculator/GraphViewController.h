@@ -13,5 +13,4 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *history;
 @property (nonatomic) id program;
-
 @end

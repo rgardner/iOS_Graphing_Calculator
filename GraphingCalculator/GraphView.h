@@ -11,8 +11,9 @@
 @class GraphView;
 
 @protocol GraphViewDataSource
-
 - (NSNumber *)getYValForX:(double)x forGraphView:(GraphView *)sender;
+- (void)storeScale:(double)scale forGraphView:(GraphView *)sender;
+- (void)storeAxisOriginX:(double)x andAxisOriginY:(double)y forGraphView:(GraphView *)sender;
 @end
 
 @interface GraphView : UIView

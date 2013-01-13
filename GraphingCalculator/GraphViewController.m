@@ -26,7 +26,7 @@
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize toolbar = _toolbar;
 
--(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem {
+- (void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem {
     if (_splitViewBarButtonItem != barButtonItem) {
         NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
         if (_splitViewBarButtonItem) [toolbarItems removeObject:_splitViewBarButtonItem];
@@ -66,21 +66,28 @@
     self.splitViewBarButtonItem = nil;
 }
 
--(void)setProgram:(id)program {
+- (void)setProgram:(id)program {
     _program = program;
     self.history.text = [CalculatorBrain descriptionOfProgram:self.program];
     [self.graphView setNeedsDisplay];
 }
 
--(void)viewDidLoad {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self.history setHidden:UIInterfaceOrientationIsLandscape(self.interfaceOrientation)];
-    }
+- (void)viewDidLoad {
+    [self hideHistoryifPadLandscape];
     self.history.text = [CalculatorBrain descriptionOfProgram:self.program];
 }
 
 - (void)setGraphView:(GraphView *)graphView {
     _graphView = graphView;
+    // Get scale and origin from userDefaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    double originx = [defaults doubleForKey:@"originx"];
+    double originy = [defaults doubleForKey:@"originy"];
+    CGPoint origin = CGPointMake(originx, originy);
+    double scale = [defaults doubleForKey:@"scale"];
+    [self.graphView setScale:scale];
+    [self.graphView setOrigin:origin];
+    
     // add pinch handler
     [self.graphView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pinch:)]];
     
@@ -94,15 +101,31 @@
     self.graphView.dataSource = self;
 }
 
--(NSNumber *)getYValForX:(double)x forGraphView:(GraphView *)sender {
+- (NSNumber *)getYValForX:(double)x forGraphView:(GraphView *)sender {
     NSDictionary *variableValues = [NSDictionary dictionaryWithObject:[NSNumber numberWithDouble:x] forKey:@"x"];
     id result = [CalculatorBrain runProgram:self.program usingVariables:variableValues];
     if ([result isKindOfClass:[NSNumber class]]) return result;
     return nil;
 }
 
+- (void)storeScale:(double)scale forGraphView:(GraphView *)sender {
+    [[NSUserDefaults standardUserDefaults] setDouble:scale forKey:@"scale"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)storeAxisOriginX:(double)x andAxisOriginY:(double)y forGraphView:(GraphView *)sender {
+    [[NSUserDefaults standardUserDefaults] setDouble:x forKey:@"originx"];
+    [[NSUserDefaults standardUserDefaults] setDouble:y forKey:@"originy"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self hideHistoryifPadLandscape];
+}
+
+- (void)hideHistoryifPadLandscape {
     if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) return;
     [self.history setHidden:UIInterfaceOrientationIsLandscape(self.interfaceOrientation)];
 }
+
 @end
