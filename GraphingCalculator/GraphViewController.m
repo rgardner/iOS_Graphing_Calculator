@@ -13,6 +13,8 @@
 @interface GraphViewController () <GraphViewDataSource>
 
 @property (weak, nonatomic) IBOutlet GraphView *graphView;
+@property (nonatomic, weak) IBOutlet UIToolbar *toolbar;
+@property (strong, nonatomic) UIBarButtonItem *splitViewBarButtonItem;
 
 @end
 
@@ -21,6 +23,48 @@
 @synthesize history = _history;
 @synthesize graphView = _graphView;
 @synthesize program = _program;
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
+@synthesize toolbar = _toolbar;
+
+-(void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem {
+    if (_splitViewBarButtonItem != barButtonItem) {
+        NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
+        if (_splitViewBarButtonItem) [toolbarItems removeObject:_splitViewBarButtonItem];
+        if (barButtonItem) [toolbarItems insertObject:barButtonItem atIndex:0];
+        self.toolbar.items = toolbarItems;
+        _splitViewBarButtonItem = barButtonItem;
+    }
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.splitViewController.delegate = self;
+}
+
+- (BOOL)splitViewController:(UISplitViewController *)svc
+   shouldHideViewController:(UIViewController *)vc
+              inOrientation:(UIInterfaceOrientation)orientation {
+    
+    return UIInterfaceOrientationIsPortrait(orientation);
+    
+}
+
+- (void)splitViewController:(UISplitViewController *)svc
+     willHideViewController:(UIViewController *)aViewController
+          withBarButtonItem:(UIBarButtonItem *)barButtonItem
+       forPopoverController:(UIPopoverController *)pc {
+    
+    barButtonItem.title = @"Calculator";
+    self.splitViewBarButtonItem = barButtonItem;
+    
+}
+
+- (void)splitViewController:(UISplitViewController *)svc
+     willShowViewController:(UIViewController *)aViewController
+  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem {
+    
+    self.splitViewBarButtonItem = nil;
+}
 
 -(void)setProgram:(id)program {
     _program = program;

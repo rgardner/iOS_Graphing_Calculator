@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CalculatorBrain.h"
 
-@interface GraphViewController : UIViewController
+@interface GraphViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *history;
 @property (nonatomic) id program;
