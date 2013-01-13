@@ -68,6 +68,7 @@
 
 -(void)setProgram:(id)program {
     _program = program;
+    self.history.text = [CalculatorBrain descriptionOfProgram:self.program];
     [self.graphView setNeedsDisplay];
 }
 
