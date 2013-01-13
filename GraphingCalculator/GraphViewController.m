@@ -73,6 +73,9 @@
 }
 
 -(void)viewDidLoad {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        [self.history setHidden:UIInterfaceOrientationIsLandscape(self.interfaceOrientation)];
+    }
     self.history.text = [CalculatorBrain descriptionOfProgram:self.program];
 }
 
@@ -98,4 +101,8 @@
     return nil;
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    if (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPad) return;
+    [self.history setHidden:UIInterfaceOrientationIsLandscape(self.interfaceOrientation)];
+}
 @end
