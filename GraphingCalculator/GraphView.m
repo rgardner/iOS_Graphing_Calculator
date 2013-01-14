@@ -15,6 +15,7 @@
 @synthesize dataSource = _dataSource;
 @synthesize scale = _scale;
 @synthesize origin = _origin;
+@synthesize drawUsesDots = _drawUsesDots;
 
 #define DEFAULT_SCALE 15.0
 
@@ -42,6 +43,13 @@
     if (CGPointEqualToPoint(origin, _origin)) return;
     _origin = origin;
     [self.dataSource storeAxisOriginX:self.origin.x andAxisOriginY:self.origin.y forGraphView:self];
+    [self setNeedsDisplay];
+}
+
+- (void)setDrawUsesDots:(BOOL)drawUsesDots {
+    if (_drawUsesDots == drawUsesDots) return;
+    _drawUsesDots = drawUsesDots;
+    [self.dataSource storeUsesDots:self.drawUsesDots forGraphView:self];
     [self setNeedsDisplay];
 }
 
@@ -90,7 +98,7 @@
     double adjustedScale = self.scale * [self contentScaleFactor];
     
     [AxesDrawer drawAxesInRect:rect originAtPoint:self.origin scale:adjustedScale];
-    
+
     BOOL lastSkipped = YES;
     CGContextBeginPath(context);
     for (CGFloat xPixel = 0; xPixel <= self.bounds.size.width; xPixel++) {
@@ -107,6 +115,11 @@
         double yAxisLength = self.bounds.size.height / adjustedScale;
         double minY = 0 - ((self.bounds.size.height - self.origin.y) / self.bounds.size.height) * yAxisLength;
         CGFloat yPixel = (1 - ([yValue doubleValue] - minY) / yAxisLength) * self.bounds.size.height;
+        
+        if (self.drawUsesDots) {
+            CGContextFillRect(context, CGRectMake(xPixel, yPixel, 1, 1));
+            continue;
+        }
         
         if (lastSkipped) {
             CGContextMoveToPoint(context, xPixel, yPixel);

@@ -22,6 +22,10 @@
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
 
+- (void)viewDidLoad {
+    self.history.text = @"";
+}
+
 - (CalculatorBrain*)brain {
     if (!_brain) _brain = [[CalculatorBrain alloc] init];
     return _brain;

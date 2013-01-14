@@ -12,5 +12,6 @@
 @interface GraphViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *history;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *switchBetweenDotAndLine;
 @property (nonatomic) id program;
 @end

@@ -14,12 +14,14 @@
 - (NSNumber *)getYValForX:(double)x forGraphView:(GraphView *)sender;
 - (void)storeScale:(double)scale forGraphView:(GraphView *)sender;
 - (void)storeAxisOriginX:(double)x andAxisOriginY:(double)y forGraphView:(GraphView *)sender;
+- (void)storeUsesDots:(BOOL)drawUsesDots forGraphView:(GraphView *)sender;
 @end
 
 @interface GraphView : UIView
 
 @property (nonatomic) CGFloat scale;
 @property (nonatomic) CGPoint origin;
+@property (nonatomic) BOOL drawUsesDots;
 
 @property (nonatomic, weak) IBOutlet id <GraphViewDataSource> dataSource;
 

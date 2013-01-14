@@ -25,6 +25,26 @@
 @synthesize program = _program;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 @synthesize toolbar = _toolbar;
+@synthesize switchBetweenDotAndLine = _switchBetweenDotAndLine;
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.splitViewController.delegate = self;
+    self.splitViewController.presentsWithGesture = NO;
+}
+
+- (void)viewDidLoad {
+    [self hideHistoryifPadLandscape];
+    self.history.text = [CalculatorBrain descriptionOfProgram:self.program];
+}
+
+- (IBAction)switchDrawStyle:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *)sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
+    
+    [self.graphView setDrawUsesDots:(selectedSegment == 0)];
+}
+
 
 - (void)setSplitViewBarButtonItem:(UIBarButtonItem *)barButtonItem {
     if (_splitViewBarButtonItem != barButtonItem) {
@@ -34,12 +54,6 @@
         self.toolbar.items = toolbarItems;
         _splitViewBarButtonItem = barButtonItem;
     }
-}
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    self.splitViewController.delegate = self;
-    self.splitViewController.presentsWithGesture = NO;
 }
 
 - (BOOL)splitViewController:(UISplitViewController *)svc
@@ -73,27 +87,27 @@
     [self.graphView setNeedsDisplay];
 }
 
-- (void)viewDidLoad {
-    [self hideHistoryifPadLandscape];
-    self.history.text = [CalculatorBrain descriptionOfProgram:self.program];
-}
 
 - (void)setGraphView:(GraphView *)graphView {
     _graphView = graphView;
+    
     // Get scale and origin from userDefaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     double originx = [defaults doubleForKey:@"originx"];
     double originy = [defaults doubleForKey:@"originy"];
     CGPoint origin = CGPointMake(originx, originy);
     double scale = [defaults doubleForKey:@"scale"];
+    BOOL drawUsesDots = [defaults boolForKey:@"drawUsesDots"];
     [self.graphView setScale:scale];
     [self.graphView setOrigin:origin];
+    [self.graphView setDrawUsesDots:drawUsesDots];
     
     // add pinch handler
     [self.graphView addGestureRecognizer:[[UIPinchGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pinch:)]];
     
     // add pan handler
     [self.graphView addGestureRecognizer:[[UIPanGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(pan:)]];
+    
     // add single finger triple tap handler
     UITapGestureRecognizer *singleFingerTTap = [[UITapGestureRecognizer alloc] initWithTarget:self.graphView action:@selector(tripleTap:)];
     singleFingerTTap.numberOfTapsRequired = 3;
@@ -117,6 +131,11 @@
 - (void)storeAxisOriginX:(double)x andAxisOriginY:(double)y forGraphView:(GraphView *)sender {
     [[NSUserDefaults standardUserDefaults] setDouble:x forKey:@"originx"];
     [[NSUserDefaults standardUserDefaults] setDouble:y forKey:@"originy"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)storeUsesDots:(BOOL)drawUsesDots forGraphView:(GraphView *)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:drawUsesDots forKey:@"drawUsesDots"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
