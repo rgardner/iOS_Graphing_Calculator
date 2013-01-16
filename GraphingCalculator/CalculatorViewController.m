@@ -23,6 +23,7 @@
 @synthesize brain = _brain;
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     self.history.text = @"";
 }
 
