@@ -82,7 +82,6 @@
 }
 
 - (void)awakeFromNib {
-    [self awakeFromNib];
     [self setup];
 }
 
