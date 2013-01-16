@@ -36,6 +36,7 @@
 - (void)viewDidLoad {
     [self hideHistoryifPadLandscape];
     self.history.text = [CalculatorBrain descriptionOfProgram:self.program];
+    self.switchBetweenDotAndLine.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] boolForKey:@"drawUsesDots"] ? 0 : 1;
 }
 
 - (IBAction)switchDrawStyle:(id)sender {

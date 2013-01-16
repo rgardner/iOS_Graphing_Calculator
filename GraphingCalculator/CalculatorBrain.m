@@ -96,18 +96,15 @@
 }
 
 + (BOOL)isTwoOperand:(NSString *)operation {
-    NSSet *operations = [NSSet setWithObjects:@"+", @"-", @"*", @"/", nil];
-    return [operations containsObject:operation];
+    return [[NSSet setWithObjects:@"+", @"-", @"*", @"/", nil] containsObject:operation];
 }
 
 + (BOOL)isOneOperand:(NSString *)operation {
-    NSSet *operations = [NSSet setWithObjects:@"sin", @"cos", @"sqrt", @"log", nil];
-    return [operations containsObject:operation];
+    return [[NSSet setWithObjects:@"sin", @"cos", @"sqrt", @"log", nil] containsObject:operation];
 }
 
 + (BOOL)isZeroOperand:(NSString *)operation {
-    NSSet *operations = [NSSet setWithObjects:@"π", @"e", nil];
-    return [operations containsObject:operation];
+    return [[NSSet setWithObjects:@"π", @"e", nil] containsObject:operation];
 }
 
 + (BOOL)isOperation:(NSString *)operation {
@@ -198,7 +195,7 @@
     for (int i = 0; i < stack.count; i++) {
         id item = stack[i];
         if ([item isKindOfClass:[NSNumber class]]) continue;
-        if ([self isOperation:item]) continue;
+        if ([self isOperation:item]) continue; // slow operation
         NSNumber *value = [NSNumber numberWithDouble:[[variableValues objectForKey:item] doubleValue]];
         if (!value) value = [NSNumber numberWithDouble:0];
         [stack replaceObjectAtIndex:i withObject:value];
